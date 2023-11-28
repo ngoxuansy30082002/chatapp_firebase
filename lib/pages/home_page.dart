@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 return Column(
                   children: <Widget>[
-                    if (profilePic == "null")
+                    if (profilePic == "null"||profilePic=="")
                       Icon(
                         Icons.account_circle,
                         size: 150,

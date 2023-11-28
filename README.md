@@ -4,7 +4,7 @@ The new product from group 9, in the cross-platform programming course.
 
 ## Members:
 
-:heart: Thank you for the contributions of all the members 
+:heart: Thank you for the contributions of all the members  :heart:
 
 | Name             | Class   | Student ID |
 |------------------|---------|------------|
@@ -15,39 +15,36 @@ The new product from group 9, in the cross-platform programming course.
 ## Getting Started
 
 * git clone https://github.com/ngoxuansy30082002/chatapp_firebase.git
+* open terminal
+* configuration your Firebase
+* flutter pub get
+* flutter run
 
 ## Authentication used in this App
 
 - Email/Password
 
-## Description
+# Feature
 
-- Place your own ```google-services.json``` file into your app's ```/android/app``` folder.
-
-# Learning Concepts
-
-- firebase_auth package
-- cloud_firestore package
-- firebase_core package
-- shared_preferences package
-- Building complex UI
-- Use of Stream & Stream Builder
-- Firebase Auth: Sign in, Sign up and Sign out
-- Shared Preference to keep the user Logged_In
-- Perform simple and compound queries in Cloud Firestore
-- Create Chat Room (with username) and Send Message (by username)
-- Firebase Firestore: Upload & Retrieve data stored in Cloud Firestore
-
-# Icon
-
-<img src="https://user-images.githubusercontent.com/73339220/107324509-0123e600-6aca-11eb-9034-25824b572a93.png" width=150 />
-
+* User Management
+  - Update information
+  - Register
+  - LogIn
+  - LogOut
+* Chat Group Management
+  - Create a new group
+  - Join a group
+  - Leave a group
+  - View group members
+  - Search for groups
+* Chat
+  - Send text messages
+  - Send image
+  
+    
 # Screenshots
 
-<img src="https://user-images.githubusercontent.com/73339220/107324748-64ae1380-6aca-11eb-8b7e-ef84a33e0a8f.jpg" width=300 /> <img src="https://user-images.githubusercontent.com/73339220/107324756-67106d80-6aca-11eb-8f89-7b1e66712786.jpg" width=300 />
+<img src="https://drive.google.com/file/d/1_WjlKXnEm-M9iZ2ab6vU9t3dtqs_rlX-/view?usp=sharing" width=300 /> <img src="https://user-images.githubusercontent.com/73339220/107324756-67106d80-6aca-11eb-8f89-7b1e66712786.jpg" width=300 />
 <img src="https://user-images.githubusercontent.com/73339220/107371036-95f80500-6b05-11eb-8193-1fe6016d9c56.jpg" width=300 /> <img src="https://user-images.githubusercontent.com/73339220/107371298-f4bd7e80-6b05-11eb-8e25-f92c62542795.jpg" width=300 />
 <img src="https://user-images.githubusercontent.com/73339220/107371235-de172780-6b05-11eb-9f5d-247d49fd3255.jpg" width=300 /> <img src="https://user-images.githubusercontent.com/73339220/107371052-9e504000-6b05-11eb-97fc-00d6a72fa2ca.jpg" width=300 />
 
-# Working
-
-<img src="https://user-images.githubusercontent.com/73339220/107370899-634e0c80-6b05-11eb-8d90-7e512712c8df.gif" width=300 />

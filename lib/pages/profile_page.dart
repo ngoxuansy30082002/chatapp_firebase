@@ -58,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
           itemBuilder: (context, index) {
             return Column(
               children: [
-                if (widget.profilePic == "null")
+                if (widget.profilePic == "null" || widget.profilePic == "")
                   Icon(
                     Icons.account_circle,
                     size: 150,
@@ -165,7 +165,7 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 170),
         child: Column(
           children: [
-            if (widget.profilePic == "null")
+            if (widget.profilePic == "null" || widget.profilePic == "")
               Icon(
                 Icons.account_circle,
                 size: 150,
