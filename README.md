@@ -4,7 +4,7 @@ The new product from group 9, in the cross-platform programming course.
 
 ## Members:
 
-Thank you for the contributions of all the members :heart
+:heart: Thank you for the contributions of all the members 
 
 | Name             | Class   | Student ID |
 |------------------|---------|------------|
