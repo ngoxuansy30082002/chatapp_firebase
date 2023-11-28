@@ -4,17 +4,17 @@ The new product from group 9, in the cross-platform programming course.
 
 ## Members:
 
+Thank you for the contributions of all the members :heart
+
 | Name             | Class   | Student ID |
 |------------------|---------|------------|
 | Ngo Xuan Sy      | 20KTMT1 | 106200244  |
-| Nguyen Huy Du    | 20KTMT2 | 106200261  |
-| Nguyen Duc Hoang | 20KTMT2 | 106200260  |
+| Nguyen Huy Du    | 20KTMT2 | 106200256  |
+| Nguyen Duc Hoang | 20KTMT2 | 106200261  |
 
 ## Getting Started
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* git clone https://github.com/ngoxuansy30082002/chatapp_firebase.git
 
 ## Authentication used in this App
 
