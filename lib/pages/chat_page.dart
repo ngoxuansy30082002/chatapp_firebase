@@ -6,6 +6,7 @@ import 'package:chatapp_firebase/service/database_service.dart';
 import 'package:chatapp_firebase/widgets/message_tile.dart';
 import 'package:chatapp_firebase/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -116,6 +117,28 @@ class _ChatPageState extends State<ChatPage> {
                         child: Icon(
                           Icons
                               .image, // Sử dụng biểu tượng đính kèm ảnh tại đây
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      pickAndUploadFile(context);
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.link,
                           color: Colors.white,
                         ),
                       ),
@@ -323,5 +346,37 @@ class _ChatPageState extends State<ChatPage> {
       (index) => chars[random.nextInt(chars.length)],
     );
     return list.join();
+  }
+
+  Future<void> _uploadFile(File file,String nameFile) async {
+    try {
+      final ref = FirebaseStorage.instance.ref().child(
+          "files/${widget.groupName}/${widget.userName}/${nameFile}");
+      await ref.putFile(file);
+      Map<String, dynamic> chatMessageMap = {
+        "message":
+        "files/${widget.groupName}/${widget.userName}/${nameFile}",
+        "sender": widget.userName,
+        "time": DateTime.now().millisecondsSinceEpoch,
+      };
+      DatabaseService().sendMessage(widget.groupId, chatMessageMap);
+      print('File uploaded successfully!');
+    } catch (e) {
+      print('Error uploading file: $e');
+    }
+  }
+
+  Future<void> pickAndUploadFile(BuildContext context) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'doc', 'docx'],
+    );
+
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      await _uploadFile(file,result.files.single.name);
+    } else {
+      // User canceled the file picking
+    }
   }
 }

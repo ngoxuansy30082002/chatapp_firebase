@@ -1,5 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MessageTile extends StatefulWidget {
   final String message;
@@ -21,25 +22,39 @@ class MessageTile extends StatefulWidget {
 
 class _MessageTileState extends State<MessageTile> {
   String? imageUrl;
+  String? fileUrl;
 
   @override
   void initState() {
     super.initState();
-    fetchImage(); // Fetch the image URL when the widget is initialized
+    fetchData(); // Fetch the image URL when the widget is initialized
   }
 
-  Future<void> fetchImage() async {
-    try {
-      print(widget.message);
-      final ref = FirebaseStorage.instance.ref().child(widget.message);
-      var url = await ref.getDownloadURL();
-      // print(url);
-      setState(() {
-        imageUrl = url;
-      });
-    } catch (e) {
-      // Handle errors, such as if the image doesn't exist
-      // print("Error fetching image: $e");
+  Future<void> fetchData() async {
+    if (widget.message.startsWith('images/')) {
+      try {
+        final ref = FirebaseStorage.instance.ref().child(widget.message);
+        var url = await ref.getDownloadURL();
+        // print(url);
+        setState(() {
+          imageUrl = url;
+        });
+      } catch (e) {
+        // Handle errors, such as if the image doesn't exist
+        // print("Error fetching image: $e");
+      }
+    } else if (widget.message.startsWith('files/')) {
+      try {
+        final ref = FirebaseStorage.instance.ref().child(widget.message);
+        var url = await ref.getDownloadURL();
+        // print(url);
+        setState(() {
+          fileUrl = url;
+        });
+      } catch (e) {
+        // Handle errors, such as if the image doesn't exist
+        // print("Error fetching image: $e");
+      }
     }
   }
 
@@ -95,6 +110,17 @@ class _MessageTileState extends State<MessageTile> {
                 height: 200, // Set the height as per your requirement
                 fit: BoxFit.cover,
               )
+            else if (fileUrl != null)
+              GestureDetector(
+                onTap: () {
+                  launchFileUrl(fileUrl!);
+                },
+                child: const Text(
+                  "Has been sent a file",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                ),
+              )
             else
               Text(
                 widget.message,
@@ -113,5 +139,14 @@ class _MessageTileState extends State<MessageTile> {
 
   String _formatTimestamp(DateTime timestamp) {
     return '${timestamp.day}/${timestamp.month}/${timestamp.year} ${timestamp.hour}:${timestamp.minute}';
+  }
+
+  void launchFileUrl(String fileUrl) async {
+    if (await canLaunch(fileUrl)) {
+      await launch(fileUrl);
+    } else {
+      // Xử lý khi không thể mở đường dẫn
+      print('Could not launch $fileUrl');
+    }
   }
 }

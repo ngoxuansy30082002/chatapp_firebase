@@ -40,6 +40,7 @@ The new product from group 9, in the cross-platform programming course.
 * Chat
   - Send text messages
   - Send image
+  - Send and download file pdf,doc...
   
     
 # Screenshots
