@@ -148,26 +148,31 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         _isLoading = true;
       });
-      await authService
-          .loginWithUserNameandPassword(email, password)
-          .then((value) async {
-        if (value == true) {
-          QuerySnapshot snapshot =
-              await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
-                  .gettingUserData(email);
-          // saving the values to our shared preferences
-          await HelperFunctions.saveUserLoggedInStatus(true);
-          await HelperFunctions.saveUserEmailSF(email);
-          await HelperFunctions.saveUserNameSF(snapshot.docs[0]['fullName']);
-          await HelperFunctions.saveUserPictureSF(snapshot.docs[0]['profilePic']);
-          nextScreenReplace(context, const HomePage());
-        } else {
-          showSnackbar(context, Colors.red, value);
-          setState(() {
-            _isLoading = false;
-          });
-        }
-      });
+      try{
+        await authService
+            .loginWithUserNameandPassword(email, password)
+            .then((value) async {
+          if (value == true) {
+            QuerySnapshot snapshot =
+            await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+                .gettingUserData(email);
+            // saving the values to our shared preferences
+            await HelperFunctions.saveUserLoggedInStatus(true);
+            await HelperFunctions.saveUserEmailSF(email);
+            await HelperFunctions.saveUserNameSF(snapshot.docs[0]['fullName']);
+            await HelperFunctions.saveUserPictureSF(snapshot.docs[0]['profilePic']);
+            nextScreenReplace(context, const HomePage());
+          } else {
+            showSnackbar(context, Colors.red, value);
+            setState(() {
+              _isLoading = false;
+            });
+          }
+        });
+      }catch(e){
+        nextScreen(context, const LoginPage());
+        showSnackbar(context, Colors.red, "Accout not found");
+      }
     }
   }
 }
